@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Container, AppBar, Toolbar, IconButton, Typography, StylesProvider } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import AddIcon from '@material-ui/icons/Add';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import FormContainer from './FormContainer'
 
@@ -10,12 +12,22 @@ const styles = {
   },
   header: {
     color: 'white'
+  },
+  submitButton: {
+    backgroundColor: 'rgb(164, 30, 52)',
+    width: '200px',
+    marginTop: '40px',
+    color: 'white',
+    textTransform: 'none',
+    fontFamily: 'Merriweather Sans, sans-serif',
+    position: 'absolute',
+    right: '24px'
   }
 }
 
 const SignUp = (props) => {
 
-  const [formObj, setFormObj] = useState({ 1: { className: '', key: 1 }})
+  const [formObj, setFormObj] = useState({ 1: { className: '', key: 1 } })
 
   const [inputKey, setInputKey] = useState(2)
 
@@ -57,7 +69,7 @@ const SignUp = (props) => {
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
-      <Container>
+      <Container style={{position: 'relative'}}>
         <div>
           <h1 style={styles.header} className='merriweather'>Sign Up</h1>
         </div>
@@ -65,7 +77,10 @@ const SignUp = (props) => {
           <FormContainer formObj={formObj} handleClear={handleClear} handleChange={handleChange} />
         </div>
         <Button variant="contained" color="primary" onClick={handleAdd}>
-          Add Class or Group
+          <AddIcon fontSize="small" /> Add
+      </Button>
+      <Button size="large" style={styles.submitButton} className='merriweather-sans' >
+        Submit <NavigateNextIcon />
       </Button>
       </Container>
     </div>
