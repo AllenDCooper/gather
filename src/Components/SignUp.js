@@ -60,11 +60,12 @@ const SignUp = (props) => {
     <div>
       <AppBar position="static" style={styles.appBar}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" >
-            App
+            <span className='merriweather-sans'><strong>Gather</strong></span>
+            <span className='merriweather' >@Muhlenberg</span>
         </Typography>
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>

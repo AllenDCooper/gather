@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
-    right: -3,
+    right: -4,
     top: 13,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
@@ -25,7 +25,7 @@ const DialogDescription = (props) => {
   return (
     <div>
       <StyledBadge badgeContent={'i'} color="primary" onClick={handleClickOpen} >
-        <Button style={{textTransform: 'none'}}>
+        <Button style={{textTransform: 'none', fontWeight: '900', padding: '6px 8px 6px 0px' }}>
           {props.modalText.clickText}
         </Button>
       </StyledBadge>
