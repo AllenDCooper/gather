@@ -25,7 +25,7 @@ const styles = {
   }
 }
 
-const SignUp = (props) => {
+const ClassForm = (props) => {
 
   const [formObj, setFormObj] = useState({ 1: { className: '', key: 1, podsChecked: true, addMeChecked: true } })
   const [inputKey, setInputKey] = useState(2)
@@ -124,4 +124,4 @@ const SignUp = (props) => {
   )
 }
 
-export default SignUp;
+export default ClassForm;
