@@ -25,7 +25,7 @@ const DialogDescription = (props) => {
   return (
     <div>
       <StyledBadge badgeContent={'i'} color="primary" onClick={handleClickOpen} >
-        <Button style={{textTransform: 'none', fontWeight: '900', padding: '6px 8px 6px 0px' }}>
+        <Button style={{textTransform: 'none', fontWeight: '700', padding: '6px 8px 6px 0px' }}>
           {props.modalText.clickText}
         </Button>
       </StyledBadge>

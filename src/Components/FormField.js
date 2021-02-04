@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Grid, FormControlLabel, Switch } from '@material-ui/core'
+import { TextField, Button, Grid, FormControlLabel, Switch, FormHelperText} from '@material-ui/core'
 // import DeleteIcon from '@material-ui/icons/Delete';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
@@ -42,11 +42,13 @@ const FormField = (props) => {
     props.handleChange(e, props.formItem.key);
   }
 
-  const handlePodsChange = () => {
+  const handlePodsChange = (e) => {
+    props.handlePodsChange(!podsChecked, props.formItem.key);
     setPodsChecked(!podsChecked);
   }
 
   const handleAddMeChange = () => {
+    props.handleAddMeChange(!addMeChecked, props.formItem.key)
     setAddMeChecked(!addMeChecked);
   }
 
@@ -62,7 +64,14 @@ const FormField = (props) => {
             style={props.styles.textField}
             onChange={e => handleChange(e, props.formItem.key)}
             value={props.formItem.className}
+            error={props.formItem.error}
+            helperText={props.formItem.error ? 'Please enter a class name': null}
           />
+          {/* {props.formItem.error ?
+            <FormHelperText id="helper-text" style={{ marginTop: '20px', color: 'red' }} >
+              {"Please enter a class name"}
+            </FormHelperText>
+            : null} */}
         </Grid>
         <Grid item xs={6} sm={3} style={styles.formCol} >
           <Switch

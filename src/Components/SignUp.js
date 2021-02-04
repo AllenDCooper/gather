@@ -27,33 +27,57 @@ const styles = {
 
 const SignUp = (props) => {
 
-  const [formObj, setFormObj] = useState({ 1: { className: '', key: 1 } })
-
+  const [formObj, setFormObj] = useState({ 1: { className: '', key: 1, podsChecked: true, addMeChecked: true } })
   const [inputKey, setInputKey] = useState(2)
+  const [isError, setIsError] = useState(false)
 
   const handleAdd = (event) => {
     const objectCopy = { ...formObj };
-    console.log(inputKey)
     setInputKey(inputKey + 1)
-    objectCopy[inputKey] = { className: '', key: inputKey };
+    objectCopy[inputKey] = { className: '', key: inputKey, podsChecked: true, addMeChecked: true };
     setFormObj(objectCopy);
-    console.log(formObj)
   }
 
   const handleChange = (event, currentKey) => {
-    console.log(currentKey)
-    console.log(event.target.value)
     const objectCopy = { ...formObj };
     objectCopy[currentKey].className = event.currentTarget.value
+    setFormObj(objectCopy)
   }
 
   const handleClear = (event, keyToRemove) => {
-    console.log(keyToRemove);
     const objectCopy = { ...formObj };
-    console.log(objectCopy)
     delete objectCopy[keyToRemove]
-    console.log(objectCopy)
     setFormObj(objectCopy)
+  }
+
+  const handlePodsChange = (value, keyToUpdate) => {
+    const objectCopy = { ...formObj };
+    objectCopy[keyToUpdate].podsChecked = value
+    setFormObj(objectCopy)
+  }
+
+  const handleAddMeChange = (value, keyToUpdate) => {
+    const objectCopy = { ...formObj };
+    objectCopy[keyToUpdate].addMeChecked = value
+    setFormObj(objectCopy)
+  }
+
+  const handleSubmit = () => {
+    const objectCopy = { ...formObj };
+    let findError = false
+    Object.values(objectCopy).forEach((formItem, index) => {
+      if (formItem.className === "") {
+        formItem.error = true
+        findError = true
+      } else {
+        formItem.error = false
+      }
+    })
+    setFormObj(objectCopy);
+    setIsError(findError)
+    if(!findError) {
+      alert(JSON.stringify(formObj))
+    }
   }
 
   return (
@@ -66,23 +90,35 @@ const SignUp = (props) => {
           <Typography variant="h6" >
             <span className='merriweather-sans'><strong>Gather</strong></span>
             <span className='merriweather' >@Muhlenberg</span>
-        </Typography>
+          </Typography>
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
-      <Container style={{position: 'relative'}}>
+      <Container style={{ position: 'relative' }}>
         <div>
           <h1 style={styles.header} className='merriweather'>Sign Up</h1>
         </div>
         <div>
-          <FormContainer formObj={formObj} handleClear={handleClear} handleChange={handleChange} />
+          <FormContainer
+            formObj={formObj}
+            handleClear={handleClear}
+            handleChange={handleChange}
+            handleAddMeChange={handleAddMeChange}
+            handlePodsChange={handlePodsChange}
+            isError={isError}
+          />
         </div>
         <Button variant="contained" color="primary" onClick={handleAdd}>
           <AddIcon fontSize="small" /> Add
-      </Button>
-      <Button size="large" style={styles.submitButton} className='merriweather-sans' >
-        Submit <NavigateNextIcon />
-      </Button>
+        </Button>
+        <Button
+          size="large"
+          style={styles.submitButton} className='merriweather-sans'
+          onClick={handleSubmit}
+        >
+          <span>Submit</span>
+          <NavigateNextIcon />
+        </Button>
       </Container>
     </div>
   )

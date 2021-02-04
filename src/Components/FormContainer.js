@@ -35,6 +35,9 @@ const FormContainer = (props) => {
         handleClear={props.handleClear}
         handleChange={props.handleChange}
         styles={styles}
+        handleAddMeChange={props.handleAddMeChange}
+        handlePodsChange={props.handlePodsChange}
+        isError={props.isError}
         />
       )}
     </div >
