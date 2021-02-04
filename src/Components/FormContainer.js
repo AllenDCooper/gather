@@ -8,12 +8,17 @@ import FormField from './FormField';
 
 const styles = {
   textField: {
-    margin: '0px 10px'
+    margin: '0px'
   },
   clearButton: {
-    backgroundColor: '#f48fb1',
-    position: 'absolute',
-    top: '50%'
+    backgroundColor: 'white'
+    // backgroundColor: '#f48fb1',
+    // position: 'absolute',
+    // top: '50%'
+  },
+  formRow: {
+    backgroundColor: 'lightgray',
+    padding: '15px'
   }
 }
 
@@ -22,7 +27,7 @@ const FormContainer = (props) => {
 
 
   return (
-    <div>
+    <div style={styles.formRow}>
       {Object.values(props.formObj).map((formItem, index) =>
         <FormField
         formItem={formItem}
